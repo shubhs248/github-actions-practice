@@ -18,7 +18,8 @@ jobs:
         run: date
 
       - name: Print Current Branch
-        run: echo "Branch: ${{ github.ref_name }}"
+        run: |
+          echo "Branch: ${{ github.ref_name }}"
 
       - name: Print Runner Operating System
         run: uname -a
