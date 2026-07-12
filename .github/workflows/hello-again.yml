@@ -13,3 +13,15 @@ jobs:
 
       - name: Print Greeting
         run: echo "Hello from GitHub Actions!"
+
+      - name: Print Current Date & Time
+        run: date
+
+      - name: Print Current Branch
+        run: echo "Branch: ${{ github.ref_name }}"
+
+      - name: Print Runner Operating System
+        run: uname -a
+
+      - name: List Repository Files
+        run: ls -la
