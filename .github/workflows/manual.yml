@@ -1,0 +1,24 @@
+name: manual-trigger
+
+on:
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: "select deployment environment"
+        required: true
+        type: choice
+        options:
+          - staging
+          - production
+
+jobs:
+  manual-trigger-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Print Environment
+        run: |
+          echo "This is a manual trigger and we're deploying to ${{ inputs.environment }}"
