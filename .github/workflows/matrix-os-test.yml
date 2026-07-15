@@ -1,0 +1,27 @@
+name: matrix-os-test
+
+on:
+    workflow_dispatch:
+
+jobs:
+    runner-os:
+        runs-on: ${{ matrix.os }}
+        strategy:
+            matrix:
+                os: [ubuntu-latest, windows-latest, macos-latest]
+
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v4
+
+            - name: Hostname
+              run: hostname
+
+            - name: Current User
+              run: whoami
+
+            - name: Python Version
+              run: python --version || python3 --version
+
+            - name: Git Version
+              run: git --version
