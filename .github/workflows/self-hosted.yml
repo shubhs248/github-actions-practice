@@ -1,0 +1,31 @@
+name: Self Hosted Demo
+
+on:
+  workflow_dispatch:
+
+jobs:
+  demo:
+    runs-on: self-hosted
+
+    steps:
+      - name: Runner Information
+        run: |
+          echo "Hostname:"
+          hostname
+
+          echo ""
+          echo "Current User:"
+          whoami
+
+          echo ""
+          echo "Working Directory:"
+          pwd
+
+      - name: Create Test File
+        run: |
+          echo "Hello from my self-hosted runner!" > shubham.txt
+
+      - name: Verify File
+        run: |
+          ls -l
+          cat shubham.txt
