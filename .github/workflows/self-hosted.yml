@@ -5,7 +5,9 @@ on:
 
 jobs:
   demo:
-    runs-on: self-hosted
+    runs-on:
+        - self-hosted
+        - my-linux-runner
 
     steps:
       - name: Runner Information
