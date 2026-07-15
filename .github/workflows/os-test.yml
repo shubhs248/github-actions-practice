@@ -1,0 +1,65 @@
+name: Runner Demo
+
+on:
+  workflow_dispatch:
+
+jobs:
+  ubuntu:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: OS Information
+        run: uname -a
+
+      - name: Hostname
+        run: hostname
+
+      - name: Current User
+        run: whoami
+
+      - name: Docker Version
+        run: docker --version
+
+      - name: Python Version
+        run: python --version
+
+      - name: Git Version
+        run: git --version
+
+  windows:
+    runs-on: windows-latest
+
+    steps:
+      - name: Hostname
+        run: hostname
+
+      - name: Current User
+        run: whoami
+
+      - name: Docker Version
+        run: docker --version
+
+      - name: Python Version
+        run: python --version
+
+      - name: Git Version
+        run: git --version
+
+  mac:
+    runs-on: macos-latest
+
+    steps:
+      - name: Hostname
+        run: hostname
+
+      - name: Current User
+        run: whoami
+
+      - name: Docker Version
+        run: docker --version
+
+      - name: Python Version
+        run: python --version
+
+      - name: Git Version
+        run: git --version
