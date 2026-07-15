@@ -54,12 +54,3 @@ jobs:
 
       - name: Current User
         run: whoami
-
-      - name: Docker Version
-        run: docker --version
-
-      - name: Python Version
-        run: python --version
-
-      - name: Git Version
-        run: git --version
