@@ -1,0 +1,40 @@
+name: Smart Pipeline
+
+on:
+  push:
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Lint
+        run: echo "Running lint checks..."
+
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Test
+        run: echo "Running tests..."
+
+  summary:
+    runs-on: ubuntu-latest
+
+    needs:
+      - lint
+      - test
+
+    steps:
+      - name: Branch Information
+        run: |
+          if [[ "${{ github.ref_name }}" == "main" ]]; then
+            echo "🚀 This is a main branch push."
+          else
+            echo "🌱 This is a feature branch push."
+          fi
+
+      - name: Commit Message
+        run: |
+          echo "Commit Message:"
+          echo "${{ github.event.head_commit.message }}"
