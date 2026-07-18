@@ -1,0 +1,39 @@
+name: Conditionals Demo
+
+on:
+  workflow_dispatch:
+  push:
+
+jobs:
+  conditional-demo:
+    runs-on: ubuntu-latest
+
+    # Run this job only on push events
+    if: github.event_name == 'push'
+
+    steps:
+      - name: Always Runs
+        run: echo "This step always runs."
+
+      - name: Main Branch Only
+        if: github.ref_name == 'main'
+        run: echo "Running on the main branch."
+
+      - name: Intentional Failure
+        id: fail_step
+        continue-on-error: true
+        run: |
+          echo "Simulating a failure..."
+          exit 1
+
+      - name: Runs if Previous Step Failed
+        if: failure()
+        run: echo "The previous step failed."
+
+      - name: Runs on Success
+        if: success()
+        run: echo "Everything succeeded."
+
+      - name: Always Runs (Cleanup)
+        if: always()
+        run: echo "Cleanup or notifications can go here."
