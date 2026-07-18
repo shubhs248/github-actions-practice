@@ -1,0 +1,24 @@
+name: Job output Demo
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    outputs:
+      build_date: ${{ steps.date.outputs.today }}
+
+    steps:
+      - name: Generate today's date
+        id: date
+        run: echo "today=$(date)" >> $GITHUB_OUTPUT
+
+  display: 
+    runs-on: ubuntu-latest
+    needs: build
+
+    steps:
+      - name: Display the build date
+        run: echo "The build date is ${{ needs.build.outputs.build_date }}"
